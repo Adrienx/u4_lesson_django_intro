@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+
+# On the first line, we are adding an import - include - so that we can include other url files in our main one. We are doing this in order to make our app more modular. These "mini apps" in Django are supposed to plug into another parent app if needed, and modularity makes this possible.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('tunr.urls')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
 ]
